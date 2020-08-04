@@ -1,0 +1,23 @@
+{% extends 'web_ui/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if image %}
+
+<h3>{{tower}}: {{certainty|stringformat:"d%%"}} </h3>
+
+<img src="{{ image }}" alt="img" width="400" height="400">
+<br> <br>
+<a class="btn btn-primary" href="">Upload Another Photo?</a>
+
+{% else %}
+
+<form action="" method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endif %}
+
+{% endblock %}
